@@ -4,6 +4,7 @@ import Home from './pages/Home/index';
 import EnterAmount from './pages/Merchant/EnterAmount';
 import CustomerHome from './pages/Customer/CustomerHome';
 import PaymentComplete from './pages/Customer/PaymentComplete';
+import VoucherSelection from './pages/Customer/VoucherSelection';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           path="/customer/paymentcomplete"
           component={PaymentComplete}
         />
+        <Route exact path="/customer/voucherselection" component={VoucherSelection} />
         <Route exact path="/merchant" component={Home} />
         <Route exact path="/merchant/enterAmount" component={EnterAmount} />
         <Route exact path="/merchant/qr" component={Home} />
