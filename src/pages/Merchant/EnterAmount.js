@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
+import { updateOriginalAmount } from 'API/api';
 
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
@@ -10,10 +11,24 @@ import FormControl from '@material-ui/core/FormControl';
 
 export default function EnterAmount() {
   const [amount, setAmount] = useState();
-  const [qrString, setQRString] = useState();
+  const [transactionId, setTransactionId] = useState();
+  const [url, setURL] = useState();
+  const [isPaid, setIsPaid] = useState(false);
 
-  const handleChange = (event) => {
+  useEffect(() => {
+    console.log(isPaid);
+  }, [isPaid]);
+
+  const getTransactionId = (amount) => {
+    updateOriginalAmount(amount, setTransactionId);
+    setURL(
+      window.location.origin + '/customer/voucherselection/' + transactionId
+    );
+  };
+
+  const handleCreateQR = (event) => {
     setAmount(event.target.value);
+    getTransactionId(event.target.value);
   };
 
   return (
@@ -42,11 +57,11 @@ export default function EnterAmount() {
             boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
           }}
         >
-          {amount ? (
+          {amount && transactionId && url ? (
             <div style={{ height: '200px', margin: '30px 0px 0px 50px' }}>
               QR Code:
               <QRCode
-                value="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+                value={url}
                 logoImage="/citi.jpg"
                 logoWidth={40}
                 logoHeight={40}
@@ -67,8 +82,7 @@ export default function EnterAmount() {
                 autoFocus
                 type="number"
                 placeholder="0.00"
-                value={amount}
-                onChange={handleChange}
+                onBlur={handleCreateQR}
                 startAdornment={
                   <InputAdornment position="start">
                     <b>S$</b>
