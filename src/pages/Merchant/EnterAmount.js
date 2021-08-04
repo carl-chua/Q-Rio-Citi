@@ -57,11 +57,11 @@ export default function EnterAmount() {
             boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
           }}
         >
-          {amount ? (
+          {amount && transactionId && url ? (
             <div style={{ height: '200px', margin: '30px 0px 0px 50px' }}>
               QR Code:
               <QRCode
-                value="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+                value={url}
                 logoImage="/citi.jpg"
                 logoWidth={40}
                 logoHeight={40}
