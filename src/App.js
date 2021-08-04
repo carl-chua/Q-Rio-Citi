@@ -3,9 +3,12 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import EnterAmount from './pages/Merchant/EnterAmount';
 import CustomerHome from './pages/Customer/CustomerHome';
-import PaymentComplete from './pages/Customer/PaymentComplete';
+import Payment from './pages/Customer/Payment';
+import UserPaymentComplete from './pages/Customer/PaymentComplete';
+import MerchantPaymentComplete from './pages/Merchant/PaymentComplete';
 import VoucherSelection from './pages/Customer/VoucherSelection';
 import BottomNav from './components/BottomNav';
+import Confirmation from './pages/Customer/Confirmation';
 import QRScanner from './pages/Customer/QRScanner';
 import MerchantHome from './pages/Merchant/MerchantHome';
 
@@ -18,18 +21,27 @@ function App() {
         <Route
           exact
           path="/customer/paymentcomplete"
-          component={PaymentComplete}
+          component={UserPaymentComplete}
         />
+
         <Route
           exact
           path="/customer/voucherselection"
           component={VoucherSelection}
         />
         <Route exact path="/merchant" component={MerchantHome} />
+
+        <Route exact path="/customer/confirmation" component={Confirmation} />
+        <Route exact path="/customer/payment" component={Payment} />
         <Route exact path="/merchant/enterAmount" component={EnterAmount} />
         <Route exact path="/merchant/qr" component={Home} />
         <Route exact path="/merchant/success" component={Home} />
         <Route exact path="/customer/qr" component={QRScanner} />
+        <Route
+          exact
+          path="/merchant/paymentcomplete"
+          component={MerchantPaymentComplete}
+        />
       </Switch>
       <BottomNav />
     </div>
