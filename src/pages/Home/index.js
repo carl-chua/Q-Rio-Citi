@@ -17,6 +17,10 @@ export default function Home() {
     history.push("/customer/paymentcomplete");
   }
 
+  function onClickVoucher() {
+    history.push("/customer/voucherselection");
+  }
+
   return (
     <div className="Home">
       <div
@@ -52,6 +56,15 @@ export default function Home() {
               onClick={onClickPayment}
             >
               PaymentComplete
+            </Button>
+          </Grid>
+          <Grid xs={12}>
+            <Button
+              style={{ height: "50px" }}
+              variant="contained"
+              onClick={onClickVoucher}
+            >
+              Voucher Selection
             </Button>
           </Grid>
         </Grid>
