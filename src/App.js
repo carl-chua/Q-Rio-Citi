@@ -1,9 +1,10 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Home from './Pages/Home';
-import EnterAmount from './Pages/Merchant/EnterAmount';
-import CustomerHome from './Pages/Customer/CustomerHome';
-import PaymentComplete from './Pages/Customer/PaymentComplete';
+import Home from './pages/Home';
+import EnterAmount from './pages/Merchant/EnterAmount';
+import CustomerHome from './pages/Customer/CustomerHome';
+import PaymentComplete from './pages/Customer/PaymentComplete';
+import BottomNav from './components/BottomNav';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/merchant/qr" component={Home} />
         <Route exact path="/merchant/success" component={Home} />
       </Switch>
+      <BottomNav />
     </div>
   );
 }
