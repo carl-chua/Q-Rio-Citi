@@ -43,9 +43,7 @@ export default function EnterAmount() {
           }}
         >
           {amount ? (
-            <div
-              style={{ height: '200px', marginTop: '30px', marginLeft: '50px' }}
-            >
+            <div style={{ height: '200px', margin: '30px 0px 0px 50px' }}>
               QR Code:
               <QRCode
                 value="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
@@ -59,15 +57,16 @@ export default function EnterAmount() {
               style={{ height: '200px', marginTop: '30px', marginLeft: '50px' }}
             ></div>
           )}
-          <div style={{ margin: '30px 50px 20px 50px' }}>
+          <div style={{ margin: '20px 50px 20px 50px' }}>
             <FormControl fullWidth>
               <InputLabel htmlFor="standard-adornment-amount">
-                Enter Amount:
+                <b>Enter Amount:</b>
               </InputLabel>
               <Input
                 id="standard-adornment-amount"
                 autoFocus
                 type="number"
+                placeholder="0.00"
                 value={amount}
                 onChange={handleChange}
                 startAdornment={
