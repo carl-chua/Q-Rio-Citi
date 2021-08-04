@@ -11,9 +11,27 @@ export async function updateOriginalAmount(amount, setTransactionId) {
         voucherID: '',
         vouchertype: '',
         vouchervalue: 0,
+        isPaid: false,
       })
       .then((docRef) => {
         setTransactionId(docRef.id);
+      });
+  } catch (err) {
+    console.log(JSON.stringify(err));
+  }
+}
+
+export async function successfulTransactionListener(
+  transactionID,
+  setTransaction
+) {
+  try {
+    firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transactionID)
+      .onSnapshot((docSnapshot) => {
+        setTransaction(docSnapshot.data());
       });
   } catch (err) {
     console.log(JSON.stringify(err));

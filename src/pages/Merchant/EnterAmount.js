@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
-import { updateOriginalAmount } from 'API/api';
+import { updateOriginalAmount, successfulTransactionListener } from 'API/api';
 
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
@@ -10,14 +11,19 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 
 export default function EnterAmount() {
+  let history = useHistory();
+
   const [amount, setAmount] = useState();
   const [transactionId, setTransactionId] = useState();
   const [url, setURL] = useState();
-  const [isPaid, setIsPaid] = useState(false);
+  const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    console.log(isPaid);
-  }, [isPaid]);
+    successfulTransactionListener(transactionId, setTransaction);
+    if (transaction && transaction.isPaid) {
+      history.push('/merchant');
+    }
+  }, []);
 
   const getTransactionId = (amount) => {
     updateOriginalAmount(amount, setTransactionId);
