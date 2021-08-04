@@ -5,6 +5,7 @@ import EnterAmount from './pages/Merchant/EnterAmount';
 import CustomerHome from './pages/Customer/CustomerHome';
 import PaymentComplete from './pages/Customer/PaymentComplete';
 import BottomNav from './components/BottomNav';
+import QRScanner from './pages/Customer/QRScanner';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/merchant/enterAmount" component={EnterAmount} />
         <Route exact path="/merchant/qr" component={Home} />
         <Route exact path="/merchant/success" component={Home} />
+        <Route exact path="/customer/qr" component={QRScanner} />
       </Switch>
       <BottomNav />
     </div>
