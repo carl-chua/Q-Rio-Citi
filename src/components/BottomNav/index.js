@@ -30,7 +30,13 @@ export default function BottomNav() {
         }}
       >
         <img src={CustomerWalletHighlighted} alt="" />
-        <img src={CustomerScanQRUnhighlighted} alt="" />
+        <img
+          onClick={() => {
+            history.push('/customer/qr');
+          }}
+          src={CustomerScanQRUnhighlighted}
+          alt=""
+        />
         <img src={CustomerMarketPlaceUnhighlighted} alt="" />
       </div>
     );
@@ -71,7 +77,7 @@ export default function BottomNav() {
         <img src={MerchantCardUnhighlighted} alt="" />
       </div>
     );
-  } else {
+  } else if (accountType === 'merchant') {
     return (
       <div
         style={{
@@ -89,5 +95,7 @@ export default function BottomNav() {
         <img src={MerchantCardHighlighted} alt="" />
       </div>
     );
+  } else {
+    return '';
   }
 }

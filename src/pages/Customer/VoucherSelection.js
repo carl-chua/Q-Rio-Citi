@@ -19,6 +19,10 @@ export default function CustomerHome() {
         history.push('/home');
     }
 
+    function onClickForward() {
+        history.push('/customer/confirmation');
+    }
+
     return (
         <div>
             <div className='BlueRibbon' style={{ display:'flex', flexDirection:'column', backgroundColor: '#003B70', borderRadius:'50px', marginTop:'-50px', paddingBottom:'60px' }}>
@@ -47,7 +51,7 @@ export default function CustomerHome() {
                         <p style={{paddingTop: "0px"}}>
                             Pick a voucher to redeem 
                         </p>
-                        <Card variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'12px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
+                        <Card onClick={onClickForward} variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'12px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
                             <CardContent>
                                 <div id="container" style={{margin:"0px", whitespace:"nowrap"}}>
                                     <div id="image" style={{display:"inline"}}>
@@ -61,7 +65,7 @@ export default function CustomerHome() {
                                 <p style={{fontSize: "10px", margin:"0px"}}>is expiring in 1 day</p>
                             </CardContent>
                         </Card>
-                        <Card variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'12px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
+                        <Card onClick={onClickForward} variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'12px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
                             <CardContent>
                                 <div id="container" style={{margin:"0px", whitespace:"nowrap"}}>
                                     <div id="image" style={{display:"inline"}}>
@@ -75,7 +79,7 @@ export default function CustomerHome() {
                                 <p style={{fontSize: "10px", margin:"0px"}}>is expiring in 5 day</p>
                             </CardContent>
                         </Card>
-                        <Card variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'12px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
+                        <Card onClick={onClickForward} variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'12px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
                             <CardContent>
                                 <div id="container" style={{margin:"0px", whitespace:"nowrap"}}>
                                     <div id="image" style={{display:"inline"}}>
