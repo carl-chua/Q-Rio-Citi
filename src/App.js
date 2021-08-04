@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/index';
 import EnterAmount from './pages/Merchant/EnterAmount';
 import CustomerHome from './pages/Customer/CustomerHome';
 import PaymentComplete from './pages/Customer/PaymentComplete';
