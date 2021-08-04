@@ -23,7 +23,6 @@ export async function updateOriginalAmount(amount) {
     console.log(JSON.stringify(err));
   }
 
-  return 
 }
 
 export async function selectVoucher(voucher_id, transaction_id) {
@@ -35,10 +34,10 @@ export async function selectVoucher(voucher_id, transaction_id) {
 
   console.log(snapshot.data());
 
-  selected_voucher = snapshot.data();
-  voucher_type = selected_voucher.discounttype;
-  voucher_value = selected_voucher.discountvalue;
-  original_amount = selected_voucher.originalamount;
+  var selected_voucher = snapshot.data();
+  var voucher_type = selected_voucher.discounttype;
+  var voucher_value = selected_voucher.discountvalue;
+  var original_amount = selected_voucher.originalamount;
 
   firebase.firestore()
     .collection("transaction")
@@ -65,11 +64,11 @@ export async function selectVoucher(voucher_id, transaction_id) {
   
 }
 
-export async function getTransactionDetails(transaction_id, setUser) {
+export async function getTransactionDetails(transaction_id) {
   var snapshot = firebase.firestore()
     .collection("transaction")
     .doc(transaction_id)
     .get();
 
-  setUser(snapshot.data());
+  return (await snapshot).data();
 }
