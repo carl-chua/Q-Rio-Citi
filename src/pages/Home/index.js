@@ -13,6 +13,10 @@ export default function Home() {
         history.push('/merchant');
     }
 
+    function onClickPayment() {
+        history.push('/customer/paymentcomplete');
+    }
+
     return (
         <div className="Home">
             <div style={{ display:'flex', flexDirection:'column' }}>
@@ -22,6 +26,9 @@ export default function Home() {
                     </Grid>
                     <Grid xs={12}>
                         <Button style={{ width:'80%', height:'50px' }} variant="contained" onClick={onClickMerchant}>Merchant</Button>
+                    </Grid>
+                    <Grid xs={12}>
+                        <Button style={{ width:'80%', height:'50px' }} variant="contained" onClick={onClickPayment}>PaymentComplete</Button>
                     </Grid>
                 </Grid>
             </div>
