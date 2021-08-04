@@ -2,9 +2,8 @@ import React,{useState, useEffect} from 'react';
 import { Avatar, Card, CardContent, Typography, Paper } from '@material-ui/core';
 import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
-import OCK from '../../assets/OCK.png';
-import arrow from '../../assets/arrow.png';
-import {getTransactionDetails, selectVoucher} from '../../API/api.js'
+import Tick from '../../assets/tick.png';
+import {getTransactionDetails} from '../../API/api.js'
 import { useHistory } from 'react-router-dom';
 
 export default function CustomerHome() {
@@ -16,17 +15,8 @@ export default function CustomerHome() {
         })
     },[])
 
-    function onClickForward() {
-        history.push('/customer/payment');
-    }
-
-    function onClickBack() {
-        history.push('/customer/voucherselection');
-    }
-
-    function redeem() {
-        onClickForward()
-        selectVoucher("swhEnJyaFq9k0vagAwUc","XEUTMdEIqeQ9STWRt1Rr")
+    function onClickHome() {
+        history.push('/home');
     }
 
     return (
@@ -48,22 +38,23 @@ export default function CustomerHome() {
             <div style={{display:'flex', flexDirection:'column', alignItems:'center', paddingTop:"20px"}}>
                 <Card variant="outlined" style={{ borderRadius:'25px', width:'86%', marginTop:'-42px', boxShadow:'2px 2px 2px 1px rgba(0, 0, 0, 0.2)' }}>
                     <CardContent>
-                        <div id="container" onClick={onClickBack} style={{margin:"0px", whitespace:"nowrap"}}>
-                                    <div id="image" style={{display:"inline"}}>
-                                        <img src={arrow} style={{width:'30px', height:'30px'}}/>
-                                    </div>
-                                    <div id="texts" style={{position:"relative", top:"-10px", display:"inline", whitespace:"nowrap", color:"#003b70"}}>
-                                       Back
-                                    </div>
-                        </div>
                         <p>
-                            Do you want to redeem this voucher?
+                            Amount Received
                         </p>
-                        <img src={OCK} style={{ width:'200px', height:'160px', paddingLeft: "25px" }}></img>
-                        <h2 style={{position:"relative", left:"80px"}}>
-                            $2 off
-                        </h2>
-                        <button style={{position:"relative", left:"80px", backgroundColor:"#003B70", color:"#FFFFFF", borderRadius: "8px"}} onClick={redeem}>Redeem</button>
+                        <h3>
+                            S${trans_obj == undefined ? "" : (trans_obj.finalamount)}
+                        </h3>
+                        <p>
+                            Transaction ID
+                        </p>
+                        <h3>
+                            5yeCjc0d9WHx52qWKLmY
+                        </h3>
+                        <img src={Tick} style={{ width:'120px', height:'120px', paddingLeft: "60px" }}></img>
+                        <h3 style={{ paddingLeft: "30px" }}>
+                            Payment Successful
+                        </h3>
+                        <button style={{position:"relative", left:"50px"}} onClick={onClickHome}>Return to Homepage</button>
                     </CardContent>
                 </Card></div>
         </div>

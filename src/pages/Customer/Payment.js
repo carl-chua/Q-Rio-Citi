@@ -4,29 +4,24 @@ import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
 import OCK from '../../assets/OCK.png';
 import arrow from '../../assets/arrow.png';
-import {getTransactionDetails, selectVoucher} from '../../API/api.js'
+import {getTransactionDetails} from '../../API/api.js'
 import { useHistory } from 'react-router-dom';
 
 export default function CustomerHome() {
     const [trans_obj, set_trans_obj] = useState();
     const history = useHistory();
     useEffect(()=>{
-        getTransactionDetails("5yeCjc0d9WHx52qWKLmY").then((transaction)=>{
+        getTransactionDetails("XEUTMdEIqeQ9STWRt1Rr").then((transaction)=>{
             set_trans_obj(transaction);
         })
     },[])
 
-    function onClickForward() {
-        history.push('/customer/payment');
+    function onClickHome() {
+        history.push('/home');
     }
 
     function onClickBack() {
         history.push('/customer/voucherselection');
-    }
-
-    function redeem() {
-        onClickForward()
-        selectVoucher("swhEnJyaFq9k0vagAwUc","XEUTMdEIqeQ9STWRt1Rr")
     }
 
     return (
@@ -57,13 +52,32 @@ export default function CustomerHome() {
                                     </div>
                         </div>
                         <p>
-                            Do you want to redeem this voucher?
+                            Pay From:
                         </p>
-                        <img src={OCK} style={{ width:'200px', height:'160px', paddingLeft: "25px" }}></img>
-                        <h2 style={{position:"relative", left:"80px"}}>
-                            $2 off
-                        </h2>
-                        <button style={{position:"relative", left:"80px", backgroundColor:"#003B70", color:"#FFFFFF", borderRadius: "8px"}} onClick={redeem}>Redeem</button>
+                        <p>
+                            CitiPay Wallet                
+                        </p>
+                        <p>
+                            S${trans_obj == undefined ? "" : (trans_obj.originalamount)}
+                        </p>
+                        <p>
+                            Current Balance S$100.00
+                        </p>
+                        <p> 
+                            Voucher
+                        </p>
+                        <h3>
+                            Old Chang Kee $4 Off          
+                        </h3>
+                        <p>
+                            -S${trans_obj == undefined ? "" : (trans_obj.vouchervalue)}
+                        </p>
+                        <p>
+                            Total Amount:
+                        </p>
+                        <p>
+                            S${trans_obj == undefined ? "" : (trans_obj.finalamount)}
+                        </p>
                     </CardContent>
                 </Card></div>
         </div>

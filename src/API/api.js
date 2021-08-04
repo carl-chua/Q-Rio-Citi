@@ -32,13 +32,14 @@ export async function selectVoucher(voucher_id, transaction_id) {
   var selected_voucher = snapshot.data();
   var voucher_type = selected_voucher.discounttype;
   var voucher_value = selected_voucher.discountvalue;
-  var original_amount = selected_voucher.originalamount;
 
-  firebase.firestore().collection('transaction').doc(transaction_id).set({
+  firebase.firestore().collection('transaction').doc(transaction_id).update({
     voucherID: voucher_id,
     vouchertype: voucher_type,
     vouchervalue: voucher_value,
   });
+
+  var original_amount = (await firebase.firestore().collection('transaction').doc(transaction_id).get()).data().originalamount
 
   var final_amount = 0;
   if (voucher_type == 'percent') {
@@ -47,7 +48,7 @@ export async function selectVoucher(voucher_id, transaction_id) {
     final_amount = original_amount - voucher_value;
   }
 
-  firebase.firestore().collection('transaction').doc(transaction_id).set({
+  firebase.firestore().collection('transaction').doc(transaction_id).update({
     finalamount: final_amount,
   });
 }
