@@ -16,8 +16,8 @@ export default function CustomerHome() {
         })
     },[])
 
-    function onClickHome() {
-        history.push('/home');
+    function onClickForward() {
+        history.push('/customer/paymentcomplete');
     }
 
     function onClickBack() {
@@ -50,34 +50,29 @@ export default function CustomerHome() {
                                     <div id="texts" style={{position:"relative", top:"-10px", display:"inline", whitespace:"nowrap", color:"#003b70"}}>
                                        Back
                                     </div>
-                        </div>
-                        <p>
+                        </div>                   
+                        <p style={{marginTop: "40px", margin: "2px"}}>
                             Pay From:
                         </p>
-                        <p>
-                            CitiPay Wallet                
-                        </p>
-                        <p>
-                            S${trans_obj == undefined ? "" : (trans_obj.originalamount)}
-                        </p>
-                        <p>
+                        <div style={{overflow: "hidden"}}>
+                            <h4 style={{float: "left", margin: "2px"}}>CitiPay Wallet </h4>
+                            <p style={{float: "right", margin: "2px"}}>S${trans_obj == undefined ? "" : (trans_obj.originalamount)}</p>
+                        </div>
+                        <p style={{margin: "2px", fontSize: "15px"}}>
                             Current Balance S$100.00
                         </p>
-                        <p> 
+                        <p style={{paddingTop: "30px", margin: "2px"}}> 
                             Voucher
                         </p>
-                        <h3>
-                            Old Chang Kee $4 Off          
-                        </h3>
-                        <p>
-                            -S${trans_obj == undefined ? "" : (trans_obj.vouchervalue)}
-                        </p>
-                        <p>
-                            Total Amount:
-                        </p>
-                        <p>
-                            S${trans_obj == undefined ? "" : (trans_obj.finalamount)}
-                        </p>
+                        <div style={{overflow: "hidden"}}>
+                            <h4 style={{float: "left", margin: "2px"}}>Old Chang Kee $4 Off </h4>
+                            <p style={{float: "right", margin: "2px"}}>-S${trans_obj == undefined ? "" : (trans_obj.vouchervalue)}</p>
+                        </div>
+                        <div style={{paddingTop: "30px", overflow: "hidden"}}>
+                            <p style={{float: "left", margin: "2px"}}>Total Amount: </p>
+                            <p style={{float: "right", margin: "2px"}}>S${trans_obj == undefined ? "" : (trans_obj.finalamount)}</p>
+                        </div>
+                        <button style={{position:"relative", top:"20px", left:"100px", backgroundColor:"#003B70", color:"#FFFFFF", borderRadius: "8px"}} onClick={onClickForward}>Pay</button>
                     </CardContent>
                 </Card></div>
         </div>

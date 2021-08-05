@@ -30,7 +30,6 @@ function App() {
           component={VoucherSelection}
         />
         <Route exact path="/merchant" component={MerchantHome} />
-
         <Route exact path="/customer/confirmation" component={Confirmation} />
         <Route exact path="/customer/payment" component={Payment} />
         <Route exact path="/merchant/enterAmount" component={EnterAmount} />
