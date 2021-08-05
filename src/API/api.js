@@ -26,7 +26,8 @@ export async function updateOriginalAmount(amount, setTransactionId, setURL) {
 
 export async function successfulTransactionListener(
   transactionID,
-  setTransaction
+  setTransaction,
+  redirect
 ) {
   try {
     firebase
@@ -35,6 +36,10 @@ export async function successfulTransactionListener(
       .doc(transactionID)
       .onSnapshot((docSnapshot) => {
         setTransaction(docSnapshot.data());
+        console.log(docSnapshot.data());
+        if (docSnapshot && docSnapshot.data() && docSnapshot.data().isPaid) {
+          redirect();
+        }
       });
   } catch (err) {
     console.log(JSON.stringify(err));
@@ -125,7 +130,7 @@ export async function updatePaymentState(transaction_id) {
       .doc(transaction_id)
       .update({
         isPaid: true,
-      })
+      });
   } catch (err) {
     console.log(JSON.stringify(err));
   }

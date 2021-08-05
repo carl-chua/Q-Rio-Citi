@@ -22,13 +22,14 @@ export default function EnterAmount() {
   const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    if (transactionId) {
-      successfulTransactionListener(transactionId, setTransaction);
-      if (transaction && transaction.isPaid) {
-        history.push('/merchant/paymentcomplete/' + transactionId);
-      }
+    if (!transaction) {
+      successfulTransactionListener(transactionId, setTransaction, redirect);
     }
-  }, []);
+  }, [transactionId]);
+
+  const redirect = () => {
+    history.push('/merchant/paymentcomplete/' + transactionId);
+  };
 
   const getTransactionId = (amount) => {
     if (amount) {
