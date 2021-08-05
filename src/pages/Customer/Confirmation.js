@@ -10,11 +10,7 @@ import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
 import OCK from '../../assets/OCK.png';
 import arrow from '../../assets/arrow.png';
-import {
-  getTransactionDetails,
-  selectVoucher,
-  getVoucherDetails,
-} from '../../API/api.js';
+import { selectVoucher, getVoucherDetails } from '../../API/api.js';
 import { useHistory, useParams } from 'react-router-dom';
 
 export default function CustomerHome() {

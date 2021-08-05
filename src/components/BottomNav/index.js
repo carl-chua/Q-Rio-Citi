@@ -90,7 +90,13 @@ export default function BottomNav() {
         }}
       >
         <img src={MerchantHouseHighlighted} alt="" height="25px" />
-        <img src={MerchantCardUnhighlighted} alt="" height="31px" />
+        <img 
+          src={MerchantCardUnhighlighted} 
+          alt="" 
+          height="31px"
+          onClick={() => {
+            history.push('/merchant/enterAmount');
+          }} />
       </div>
     );
   } else if (accountType === 'merchant') {
@@ -107,7 +113,13 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={MerchantHouseUnhighlighted} alt="" height="25px" />
+        <img 
+          src={MerchantHouseUnhighlighted} 
+          alt="" 
+          height="25px"
+          onClick={() => {
+            history.push('/merchant');
+          }}  />
         <img src={MerchantCardHighlighted} alt="" height="30px" />
       </div>
     );

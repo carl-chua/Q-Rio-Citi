@@ -46,7 +46,7 @@ function App() {
         <Route exact path="/customer/qr" component={QRScanner} />
         <Route
           exact
-          path="/merchant/paymentcomplete"
+          path="/merchant/paymentcomplete/:transactionId"
           component={MerchantPaymentComplete}
         />
       </Switch>

@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
 import { updateOriginalAmount, successfulTransactionListener } from 'API/api';
+import { Avatar, CardContent } from '@material-ui/core';
 
+import OCK from '../../assets/OCK.png';
+import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import Card from '@material-ui/core/Card';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -19,17 +22,18 @@ export default function EnterAmount() {
   const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    successfulTransactionListener(transactionId, setTransaction);
-    if (transaction && transaction.isPaid) {
-      history.push('/merchant');
+    if (transactionId) {
+      successfulTransactionListener(transactionId, setTransaction);
+      if (transaction && transaction.isPaid) {
+        history.push('/merchant');
+      }
     }
   }, []);
 
   const getTransactionId = (amount) => {
-    updateOriginalAmount(amount, setTransactionId);
-    setURL(
-      window.location.origin + '/customer/voucherselection/' + transactionId
-    );
+    if (amount) {
+      updateOriginalAmount(amount, setTransactionId, setURL);
+    }
   };
 
   const handleCreateQR = (event) => {
@@ -46,25 +50,45 @@ export default function EnterAmount() {
           height: '250px',
           marginTop: '-50px',
         }}
-      ></div>
-      <div
-        style={{
-          position: 'relative',
-          bottom: '100px',
-          left: '22px',
-        }}
       >
+        <div
+            className="ShoppingCartAndAvatar"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+        >
+          <div
+            className="ShoppingCart"
+            style={{ paddingTop: '90px', paddingLeft: '20px' }}
+          >
+            <img src={ShoppingCartIcon} alt="" />
+          </div>
+          <div
+            className="Avatar"
+            style={{ paddingTop: '82px', paddingRight: '8px' }}
+          >
+            <Avatar
+              src={OCK}
+              alt=""
+              style={{ width: '70px', height: '70px' }}
+            />
+          </div>
+        </div>
+      </div>
+      <div style={{display:'flex', flexDirection:'column', position: "relative", top: "-50px", alignItems:'center'}}>
         <Card
           variant="outlined"
           style={{
             borderRadius: '25px',
             width: '86%',
-            height: '450px',
+            height: '400px',
             boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
           }}
         >
           {amount && transactionId && url ? (
-            <div style={{ height: '200px', margin: '30px 0px 0px 50px' }}>
+            <div style={{ height: '190px', margin: '30px 0px 0px 50px' }}>
               QR Code:
               <QRCode
                 value={url}
@@ -75,10 +99,10 @@ export default function EnterAmount() {
             </div>
           ) : (
             <div
-              style={{ height: '200px', marginTop: '30px', marginLeft: '50px' }}
+              style={{ height: '190px', marginTop: '0px', marginLeft: '50px' }}
             ></div>
           )}
-          <div style={{ margin: '20px 50px 20px 50px' }}>
+          <div style={{ margin: '0px 50px 20px 50px' }}>
             <FormControl fullWidth>
               <InputLabel htmlFor="standard-adornment-amount">
                 <b>Enter Amount:</b>

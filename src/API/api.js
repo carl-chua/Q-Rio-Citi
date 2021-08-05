@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export async function updateOriginalAmount(amount, setTransactionId) {
+export async function updateOriginalAmount(amount, setTransactionId, setURL) {
   try {
     firebase
       .firestore()
@@ -15,6 +15,9 @@ export async function updateOriginalAmount(amount, setTransactionId) {
       })
       .then((docRef) => {
         setTransactionId(docRef.id);
+        setURL(
+          window.location.origin + '/customer/voucherselection/' + docRef.id
+        );
       });
   } catch (err) {
     console.log(JSON.stringify(err));
@@ -87,12 +90,17 @@ export async function getVoucherDetails(voucherId) {
   return (await snapshot).data();
 }
 
-export async function getTransactionDetails(transaction_id) {
-  var snapshot = firebase
-    .firestore()
-    .collection('transaction')
-    .doc(transaction_id)
-    .get();
-
-  return (await snapshot).data();
+export async function getTransactionDetails(transaction_id, setTransaction) {
+  try {
+    firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transaction_id)
+      .get()
+      .then((d) => {
+        setTransaction(d.data());
+      });
+  } catch (err) {
+    console.log(JSON.stringify(err));
+  }
 }

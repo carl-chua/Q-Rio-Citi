@@ -19,9 +19,7 @@ export default function CustomerHome() {
 
   useEffect(() => {
     if (transactionId != undefined)
-      getTransactionDetails(transactionId).then((transaction) => {
-        set_trans_obj(transaction);
-      });
+      getTransactionDetails(transactionId, set_trans_obj);
   }, [transactionId]);
 
   function onClickHome() {
