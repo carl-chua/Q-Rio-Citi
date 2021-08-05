@@ -121,10 +121,10 @@ export default function CustomerHome() {
                 Back
               </div>
             </div>
-            <p>Do you want to redeem this voucher?</p>
+            <p style={{paddingLeft: "20px"}}>Do you want to redeem this voucher?</p>
             <img
               src={OCK}
-              style={{ width: '200px', height: '160px', paddingLeft: '25px' }}
+              style={{ width: '200px', height: '160px', paddingLeft: '60px' }}
             ></img>
             <h2 style={{ position: 'relative', left: '80px' }}>
               {voucher != undefined ? voucher.name : ''}
@@ -132,7 +132,7 @@ export default function CustomerHome() {
             <button
               style={{
                 position: 'relative',
-                left: '80px',
+                left: '120px',
                 backgroundColor: '#003B70',
                 color: '#FFFFFF',
                 borderRadius: '8px',

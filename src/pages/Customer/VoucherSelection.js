@@ -103,11 +103,11 @@ export default function CustomerHome() {
           }}
         >
           <CardContent>
-            <p style={{ paddingLeft: '70px', margin: '0px' }}>Amount Due</p>
-            <h2 style={{ paddingLeft: '65px', margin: '10px' }}>
+            <p style={{ paddingLeft: '100px', margin: '0px' }}>Amount Due</p>
+            <h2 style={{ paddingLeft: '90px', margin: '10px' }}>
               S${trans_obj == undefined ? '' : trans_obj.originalamount}
             </h2>
-            <p style={{ paddingTop: '0px' }}>Pick a voucher to redeem</p>
+            <p style={{ paddingTop: '0px', paddingLeft: "25px"}}>Pick a voucher to redeem</p>
             <Card
               onClick={onClickOption1}
               variant="outlined"
@@ -115,6 +115,7 @@ export default function CustomerHome() {
                 borderRadius: '25px',
                 width: '86%',
                 marginTop: '12px',
+                marginLeft: '20px',
                 boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
               }}
             >
@@ -151,6 +152,7 @@ export default function CustomerHome() {
                 borderRadius: '25px',
                 width: '86%',
                 marginTop: '12px',
+                marginLeft: '20px',
                 boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
               }}
             >
