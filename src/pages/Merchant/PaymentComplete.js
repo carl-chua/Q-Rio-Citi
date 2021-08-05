@@ -17,7 +17,7 @@ export default function CustomerHome() {
   }, [transactionId]);
 
   function onClickHome() {
-    history.push('/home');
+    history.push('/merchant');
   }
 
   return (
