@@ -109,14 +109,14 @@ export async function getTransactionDetails(transaction_id, setTransaction) {
   }
 }
 
-export async function updateVoucherState(voucher_id) {
+export async function updatePaymentState(transaction_id) {
   try {
-    firebase
+    await firebase
       .firestore()
-      .collection('merchantvouchers')
-      .doc(voucher_id)
+      .collection('transaction')
+      .doc(transaction_id)
       .update({
-        is_used: true,
+        isPaid: true,
       })
   } catch (err) {
     console.log(JSON.stringify(err));

@@ -8,9 +8,8 @@ import {
 } from '@material-ui/core';
 import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
-import OCK from '../../assets/OCK.png';
 import arrow from '../../assets/arrow.png';
-import { getTransactionDetails, getVoucherDetails } from '../../API/api.js';
+import { getTransactionDetails, getVoucherDetails, updatePaymentState } from '../../API/api.js';
 import { useHistory, useParams } from 'react-router-dom';
 
 export default function CustomerHome() {
@@ -32,6 +31,11 @@ export default function CustomerHome() {
       });
     }
   }, [voucherId]);
+
+  async function pay() {
+    await updatePaymentState(transactionId);
+    onClickForward();
+  }
 
   function onClickForward() {
     history.push(`/customer/paymentcomplete/${transactionId}`);
@@ -159,7 +163,7 @@ export default function CustomerHome() {
                 color: '#FFFFFF',
                 borderRadius: '8px',
               }}
-              onClick={onClickForward}
+              onClick={pay}
             >
               Pay
             </button>
