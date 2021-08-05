@@ -16,7 +16,7 @@ export default function CustomerHome() {
     },[])
 
     function onClickHome() {
-        history.push('/home');
+        history.push('/customer');
     }
 
     return (

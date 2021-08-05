@@ -29,7 +29,11 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={CustomerWalletHighlighted} alt="" height="25px" />
+        <img 
+          src={CustomerWalletHighlighted} 
+          alt="" 
+          height="25px"
+        />
         <img
           onClick={() => {
             history.push('/customer/qr');
@@ -38,7 +42,11 @@ export default function BottomNav() {
           alt=""
           height="25px"
         />
-        <img src={CustomerMarketPlaceUnhighlighted} alt="" height="25px" />
+        <img 
+          src={CustomerMarketPlaceUnhighlighted} 
+          alt="" 
+          height="25px"
+        />
       </div>
     );
   } else if (accountType === 'customer') {
@@ -55,7 +63,14 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={CustomerWalletUnhighlighted} alt="" height="25px" />
+        <img 
+          src={CustomerWalletUnhighlighted} 
+          alt="" 
+          height="25px"
+          onClick={() => {
+            history.push('/customer');
+          }}
+        />
         <img src={CustomerScanQRHighlighted} alt="" height="25px" />
         <img src={CustomerMarketPlaceUnhighlighted} alt="" height="25px" />
       </div>
