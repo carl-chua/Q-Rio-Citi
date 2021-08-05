@@ -94,13 +94,21 @@ export default function EnterAmount() {
           }}
         >
           {amount && transactionId && url ? (
-            <div style={{ height: '200px', display: "flex", flexDirection: "column", paddingTop: "20px", alignItems: "center" }}>
+            <div
+              style={{
+                height: '200px',
+                display: 'flex',
+                flexDirection: 'column',
+                paddingTop: '20px',
+                alignItems: 'center',
+              }}
+            >
               QR Code:
               <QRCode
                 value={url}
                 logoImage="/citi.jpg"
-                logoWidth={50}
-                logoHeight={50}
+                logoWidth={40}
+                logoHeight={40}
               />
             </div>
           ) : (
