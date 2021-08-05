@@ -19,12 +19,9 @@ export default function EnterAmount() {
   const [amount, setAmount] = useState();
   const [transactionId, setTransactionId] = useState();
   const [url, setURL] = useState();
-  const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    if (!transaction) {
-      successfulTransactionListener(transactionId, setTransaction, redirect);
-    }
+    successfulTransactionListener(transactionId, redirect);
   }, [transactionId]);
 
   const redirect = () => {

@@ -24,18 +24,13 @@ export async function updateOriginalAmount(amount, setTransactionId, setURL) {
   }
 }
 
-export async function successfulTransactionListener(
-  transactionID,
-  setTransaction,
-  redirect
-) {
+export async function successfulTransactionListener(transactionID, redirect) {
   try {
     firebase
       .firestore()
       .collection('transaction')
       .doc(transactionID)
       .onSnapshot((docSnapshot) => {
-        setTransaction(docSnapshot.data());
         console.log(docSnapshot.data());
         if (docSnapshot && docSnapshot.data() && docSnapshot.data().isPaid) {
           redirect();
