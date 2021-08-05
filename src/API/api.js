@@ -24,17 +24,17 @@ export async function updateOriginalAmount(amount, setTransactionId, setURL) {
   }
 }
 
-export async function successfulTransactionListener(
-  transactionID,
-  setTransaction
-) {
+export async function successfulTransactionListener(transactionID, redirect) {
   try {
     firebase
       .firestore()
       .collection('transaction')
       .doc(transactionID)
       .onSnapshot((docSnapshot) => {
-        setTransaction(docSnapshot.data());
+        console.log(docSnapshot.data());
+        if (docSnapshot && docSnapshot.data() && docSnapshot.data().isPaid) {
+          redirect();
+        }
       });
   } catch (err) {
     console.log(JSON.stringify(err));
@@ -125,7 +125,7 @@ export async function updatePaymentState(transaction_id) {
       .doc(transaction_id)
       .update({
         isPaid: true,
-      })
+      });
   } catch (err) {
     console.log(JSON.stringify(err));
   }
