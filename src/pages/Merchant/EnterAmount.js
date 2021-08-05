@@ -19,17 +19,18 @@ export default function EnterAmount() {
   const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    successfulTransactionListener(transactionId, setTransaction);
-    if (transaction && transaction.isPaid) {
-      history.push('/merchant');
+    if (transactionId) {
+      successfulTransactionListener(transactionId, setTransaction);
+      if (transaction && transaction.isPaid) {
+        history.push('/merchant');
+      }
     }
   }, []);
 
   const getTransactionId = (amount) => {
-    updateOriginalAmount(amount, setTransactionId);
-    setURL(
-      window.location.origin + '/customer/voucherselection/' + transactionId
-    );
+    if (amount) {
+      updateOriginalAmount(amount, setTransactionId, setURL);
+    }
   };
 
   const handleCreateQR = (event) => {

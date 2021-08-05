@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export async function updateOriginalAmount(amount, setTransactionId) {
+export async function updateOriginalAmount(amount, setTransactionId, setURL) {
   try {
     firebase
       .firestore()
@@ -15,6 +15,9 @@ export async function updateOriginalAmount(amount, setTransactionId) {
       })
       .then((docRef) => {
         setTransactionId(docRef.id);
+        setURL(
+          window.location.origin + '/customer/voucherselection/' + docRef.id
+        );
       });
   } catch (err) {
     console.log(JSON.stringify(err));
