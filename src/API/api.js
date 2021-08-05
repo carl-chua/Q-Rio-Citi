@@ -54,11 +54,15 @@ export async function selectVoucher(voucher_id, transaction_id) {
   var voucher_type = selected_voucher.discounttype;
   var voucher_value = selected_voucher.discountvalue;
 
-  firebase.firestore().collection('transaction').doc(transaction_id).update({
-    voucherID: voucher_id,
-    vouchertype: voucher_type,
-    vouchervalue: voucher_value,
-  });
+  await firebase
+    .firestore()
+    .collection('transaction')
+    .doc(transaction_id)
+    .update({
+      voucherID: voucher_id,
+      vouchertype: voucher_type,
+      vouchervalue: voucher_value,
+    });
 
   var original_amount = (
     await firebase
@@ -77,9 +81,13 @@ export async function selectVoucher(voucher_id, transaction_id) {
 
   console.log(final_amount);
 
-  firebase.firestore().collection('transaction').doc(transaction_id).update({
-    finalamount: final_amount,
-  });
+  await firebase
+    .firestore()
+    .collection('transaction')
+    .doc(transaction_id)
+    .update({
+      finalamount: final_amount,
+    });
 
   return '';
 }
