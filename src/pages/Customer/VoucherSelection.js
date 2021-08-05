@@ -32,6 +32,18 @@ export default function CustomerHome() {
     history.push('/customer/confirmation');
   }
 
+  function onClickOption1() {
+    history.push(
+      `/customer/confirmation/${transactionId}/swhEnJyaFq9k0vagAwUc`
+    );
+  }
+
+  function onClickOption2() {
+    history.push(
+      `/customer/confirmation/${transactionId}/wVlbAIKQdsZPxxiYtHIh`
+    );
+  }
+
   return (
     <div>
       <div
@@ -99,7 +111,7 @@ export default function CustomerHome() {
             </h2>
             <p style={{ paddingTop: '0px' }}>Pick a voucher to redeem</p>
             <Card
-              onClick={onClickForward}
+              onClick={onClickOption1}
               variant="outlined"
               style={{
                 borderRadius: '25px',
@@ -135,7 +147,7 @@ export default function CustomerHome() {
               </CardContent>
             </Card>
             <Card
-              onClick={onClickForward}
+              onClick={onClickOption2}
               variant="outlined"
               style={{
                 borderRadius: '25px',
