@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/customer" component={CustomerHome} />
         <Route
           exact
-          path="/customer/paymentcomplete"
+          path="/customer/paymentcomplete/:transactionId"
           component={UserPaymentComplete}
         />
 

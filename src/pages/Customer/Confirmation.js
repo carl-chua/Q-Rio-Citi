@@ -34,9 +34,9 @@ export default function CustomerHome() {
     history.push(`/customer/voucherselection/${transactionId}`);
   }
 
-  function redeem() {
+  async function redeem() {
+    await selectVoucher(voucherId, transactionId);
     onClickForward();
-    selectVoucher(voucherId, transactionId);
   }
 
   return (

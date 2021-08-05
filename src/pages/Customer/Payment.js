@@ -34,7 +34,7 @@ export default function CustomerHome() {
   }, [voucherId]);
 
   function onClickForward() {
-    history.push('/customer/paymentcomplete');
+    history.push(`/customer/paymentcomplete/${transactionId}`);
   }
 
   function onClickBack() {
@@ -136,7 +136,9 @@ export default function CustomerHome() {
             <p style={{ paddingTop: '30px', margin: '2px' }}>Voucher</p>
             <div style={{ overflow: 'hidden' }}>
               <h4 style={{ float: 'left', margin: '2px' }}>
-                Old Chang Kee $4 Off{' '}
+                {voucher != undefined
+                  ? voucher.merchantname + ' ' + voucher.name
+                  : ''}{' '}
               </h4>
               <p style={{ float: 'right', margin: '2px' }}>
                 -S${trans_obj == undefined ? '' : trans_obj.vouchervalue}
