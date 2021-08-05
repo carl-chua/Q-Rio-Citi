@@ -158,7 +158,7 @@ export default function CustomerHome() {
               style={{
                 position: 'relative',
                 top: '20px',
-                left: '100px',
+                left: '120px',
                 backgroundColor: '#003B70',
                 color: '#FFFFFF',
                 borderRadius: '8px',

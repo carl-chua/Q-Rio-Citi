@@ -126,13 +126,13 @@ export default function CustomerHome() {
               src={OCK}
               style={{ width: '200px', height: '160px', paddingLeft: '60px' }}
             ></img>
-            <h2 style={{ position: 'relative', left: '80px' }}>
+            <h2 style={{ position: 'relative', left: '100px' }}>
               {voucher != undefined ? voucher.name : ''}
             </h2>
             <button
               style={{
                 position: 'relative',
-                left: '120px',
+                left: '130px',
                 backgroundColor: '#003B70',
                 color: '#FFFFFF',
                 borderRadius: '8px',
