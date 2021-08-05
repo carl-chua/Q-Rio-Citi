@@ -10,10 +10,10 @@ export default function CustomerHome() {
   let { transactionId } = useParams();
   const history = useHistory();
 
-  const [trans_obj, set_trans_obj] = useState();
+  const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    getTransactionDetails(transactionId, set_trans_obj);
+    getTransactionDetails(transactionId, setTransaction);
   }, [transactionId]);
 
   function onClickHome() {
@@ -82,7 +82,7 @@ export default function CustomerHome() {
         >
           <CardContent>
             <p>Amount Received</p>
-            <h3>S$ {trans_obj && trans_obj.finalamount}</h3>
+            <h3>S$ {transaction && transaction.finalamount}</h3>
             <p>Transaction ID</p>
             <h3>5yeCjc0d9WHx52qWKLmY</h3>
             <img
