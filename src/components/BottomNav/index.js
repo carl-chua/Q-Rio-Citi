@@ -29,15 +29,16 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={CustomerWalletHighlighted} alt="" />
+        <img src={CustomerWalletHighlighted} alt="" height="25px" />
         <img
           onClick={() => {
             history.push('/customer/qr');
           }}
           src={CustomerScanQRUnhighlighted}
           alt=""
+          height="25px"
         />
-        <img src={CustomerMarketPlaceUnhighlighted} alt="" />
+        <img src={CustomerMarketPlaceUnhighlighted} alt="" height="25px" />
       </div>
     );
   } else if (accountType === 'customer') {
@@ -54,9 +55,9 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={CustomerWalletUnhighlighted} alt="" />
-        <img src={CustomerScanQRHighlighted} alt="" />
-        <img src={CustomerMarketPlaceUnhighlighted} alt="" />
+        <img src={CustomerWalletUnhighlighted} alt="" height="25px" />
+        <img src={CustomerScanQRHighlighted} alt="" height="25px" />
+        <img src={CustomerMarketPlaceUnhighlighted} alt="" height="25px" />
       </div>
     );
   } else if (location.pathname === '/merchant') {
@@ -73,8 +74,8 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={MerchantHouseHighlighted} alt="" />
-        <img src={MerchantCardUnhighlighted} alt="" />
+        <img src={MerchantHouseHighlighted} alt="" height="25px" />
+        <img src={MerchantCardUnhighlighted} alt="" height="31px" />
       </div>
     );
   } else if (accountType === 'merchant') {
@@ -91,8 +92,8 @@ export default function BottomNav() {
           paddingBottom: '20px',
         }}
       >
-        <img src={MerchantHouseUnhighlighted} alt="" />
-        <img src={MerchantCardHighlighted} alt="" />
+        <img src={MerchantHouseUnhighlighted} alt="" height="25px" />
+        <img src={MerchantCardHighlighted} alt="" height="30px" />
       </div>
     );
   } else {

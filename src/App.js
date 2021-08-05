@@ -10,6 +10,7 @@ import VoucherSelection from './pages/Customer/VoucherSelection';
 import BottomNav from './components/BottomNav';
 import Confirmation from './pages/Customer/Confirmation';
 import QRScanner from './pages/Customer/QRScanner';
+import MerchantHome from './pages/Merchant/MerchantHome';
 
 function App() {
   return (
@@ -22,10 +23,16 @@ function App() {
           path="/customer/paymentcomplete"
           component={UserPaymentComplete}
         />
-        <Route exact path="/customer/voucherselection" component={VoucherSelection} />
+
+        <Route
+          exact
+          path="/customer/voucherselection"
+          component={VoucherSelection}
+        />
+        <Route exact path="/merchant" component={MerchantHome} />
+
         <Route exact path="/customer/confirmation" component={Confirmation} />
         <Route exact path="/customer/payment" component={Payment} />
-        <Route exact path="/merchant" component={Home} />
         <Route exact path="/merchant/enterAmount" component={EnterAmount} />
         <Route exact path="/merchant/qr" component={Home} />
         <Route exact path="/merchant/success" component={Home} />
