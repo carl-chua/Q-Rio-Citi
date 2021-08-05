@@ -94,3 +94,17 @@ export async function getTransactionDetails(transaction_id, setTransaction) {
     console.log(JSON.stringify(err));
   }
 }
+
+export async function updateVoucherState(voucher_id) {
+  try {
+    firebase
+      .firestore()
+      .collection('merchantvouchers')
+      .doc(voucher_id)
+      .update({
+        is_used: true,
+      })
+  } catch (err) {
+    console.log(JSON.stringify(err));
+  }
+}

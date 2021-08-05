@@ -5,6 +5,7 @@ import ProfileImage from '../../assets/ProfileImage.png';
 import OCK from '../../assets/OCK.png';
 import arrow from '../../assets/arrow.png';
 import {getTransactionDetails} from '../../API/api.js'
+import { updateVoucherState } from '../../API/api.js';
 import { useHistory } from 'react-router-dom';
 
 export default function CustomerHome() {
@@ -15,6 +16,11 @@ export default function CustomerHome() {
             set_trans_obj(transaction);
         })
     },[])
+
+    function pay() {
+        onClickForward();
+        updateVoucherState("8D5i4NwT5LcuW9TWB1FS");
+    }
 
     function onClickForward() {
         history.push('/customer/paymentcomplete');
@@ -72,7 +78,7 @@ export default function CustomerHome() {
                             <p style={{float: "left", margin: "2px"}}>Total Amount: </p>
                             <p style={{float: "right", margin: "2px"}}>S${trans_obj == undefined ? "" : (trans_obj.finalamount)}</p>
                         </div>
-                        <button style={{position:"relative", top:"20px", left:"100px", backgroundColor:"#003B70", color:"#FFFFFF", borderRadius: "8px"}} onClick={onClickForward}>Pay</button>
+                        <button style={{position:"relative", top:"20px", left:"100px", backgroundColor:"#003B70", color:"#FFFFFF", borderRadius: "8px"}} onClick={pay}>Pay</button>
                     </CardContent>
                 </Card></div>
         </div>
