@@ -25,7 +25,7 @@ export default function EnterAmount() {
     if (transactionId) {
       successfulTransactionListener(transactionId, setTransaction);
       if (transaction && transaction.isPaid) {
-        history.push('/merchant');
+        history.push('/merchant/paymentcomplete/' + transactionId);
       }
     }
   }, []);
@@ -52,12 +52,12 @@ export default function EnterAmount() {
         }}
       >
         <div
-            className="ShoppingCartAndAvatar"
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
+          className="ShoppingCartAndAvatar"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
         >
           <div
             className="ShoppingCart"
@@ -77,7 +77,15 @@ export default function EnterAmount() {
           </div>
         </div>
       </div>
-      <div style={{display:'flex', flexDirection:'column', position: "relative", top: "-50px", alignItems:'center'}}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          top: '-50px',
+          alignItems: 'center',
+        }}
+      >
         <Card
           variant="outlined"
           style={{
