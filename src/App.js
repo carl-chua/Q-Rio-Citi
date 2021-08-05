@@ -23,9 +23,10 @@ function App() {
           path="/customer/paymentcomplete"
           component={UserPaymentComplete}
         />
+
         <Route
           exact
-          path="/customer/voucherselection"
+          path="/customer/voucherselection/:transactionId"
           component={VoucherSelection}
         />
         <Route exact path="/merchant" component={MerchantHome} />
