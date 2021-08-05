@@ -121,26 +121,26 @@ export default function CustomerHome() {
                 Back
               </div>
             </div>
-            <p style={{paddingLeft: "20px"}}>Do you want to redeem this voucher?</p>
-            <img
-              src={OCK}
-              style={{ width: '200px', height: '160px', paddingLeft: '60px' }}
-            ></img>
-            <h2 style={{ position: 'relative', left: '100px' }}>
-              {voucher != undefined ? voucher.name : ''}
-            </h2>
-            <button
-              style={{
-                position: 'relative',
-                left: '130px',
-                backgroundColor: '#003B70',
-                color: '#FFFFFF',
-                borderRadius: '8px',
-              }}
-              onClick={redeem}
-            >
-              Redeem
-            </button>
+            <div style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <p>Do you want to redeem this voucher?</p>
+                <img
+                src={OCK}
+                style={{ width: '200px', height: '160px'}}
+                ></img>
+                <h2 style={{}}>
+                {voucher != undefined ? voucher.name : ''}
+                </h2>
+                <button
+                style={{
+                    backgroundColor: '#003B70',
+                    color: '#FFFFFF',
+                    borderRadius: '8px',
+                }}
+                onClick={redeem}
+                >
+                Redeem
+                </button>
+            </div>
           </CardContent>
         </Card>
       </div>

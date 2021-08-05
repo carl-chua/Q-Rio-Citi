@@ -154,19 +154,20 @@ export default function CustomerHome() {
                 S${trans_obj == undefined ? '' : trans_obj.finalamount}
               </p>
             </div>
-            <button
-              style={{
-                position: 'relative',
-                top: '20px',
-                left: '120px',
-                backgroundColor: '#003B70',
-                color: '#FFFFFF',
-                borderRadius: '8px',
-              }}
-              onClick={pay}
-            >
-              Pay
-            </button>
+            <div style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <button
+                style={{
+                    position: 'relative',
+                    top: '20px',
+                    backgroundColor: '#003B70',
+                    color: '#FFFFFF',
+                    borderRadius: '8px',
+                }}
+                onClick={pay}
+                >
+                Pay
+                </button>
+            </div>
           </CardContent>
         </Card>
       </div>

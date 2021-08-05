@@ -103,85 +103,87 @@ export default function CustomerHome() {
           }}
         >
           <CardContent>
-            <p style={{ paddingLeft: '100px', margin: '0px' }}>Amount Due</p>
-            <h2 style={{ paddingLeft: '90px', margin: '10px' }}>
-              S${trans_obj == undefined ? '' : trans_obj.originalamount}
-            </h2>
-            <p style={{ paddingTop: '0px', paddingLeft: "25px"}}>Pick a voucher to redeem</p>
-            <Card
-              onClick={onClickOption1}
-              variant="outlined"
-              style={{
-                borderRadius: '25px',
-                width: '86%',
-                marginTop: '12px',
-                marginLeft: '20px',
-                boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              <CardContent>
-                <div
-                  id="container"
-                  style={{ margin: '0px', whitespace: 'nowrap' }}
+            <div style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <p style={{margin: '0px' }}>Amount Due</p>
+                <h2 style={{margin: '10px' }}>
+                S${trans_obj == undefined ? '' : trans_obj.originalamount}
+                </h2>
+                <p style={{ paddingTop: '0px'}}>Pick a voucher to redeem</p>
+                <Card
+                onClick={onClickOption1}
+                variant="outlined"
+                style={{
+                    borderRadius: '25px',
+                    width: '86%',
+                    marginTop: '12px',
+                    marginLeft: '0px',
+                    boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
+                }}
                 >
-                  <div id="image" style={{ display: 'inline' }}>
-                    <img src={OCK} style={{ width: '30px', height: '30px' }} />
-                  </div>
-                  <div
-                    id="texts"
-                    style={{
-                      position: 'relative',
-                      top: '-10px',
-                      display: 'inline',
-                      whitespace: 'nowrap;',
-                    }}
-                  >
-                    Old Chang Kee
-                  </div>
-                </div>
-                <h2 style={{ margin: '0px' }}>$2 off</h2>
-                <p style={{ fontSize: '10px', margin: '0px' }}>
-                  is expiring in 1 day
-                </p>
-              </CardContent>
-            </Card>
-            <Card
-              onClick={onClickOption2}
-              variant="outlined"
-              style={{
-                borderRadius: '25px',
-                width: '86%',
-                marginTop: '12px',
-                marginLeft: '20px',
-                boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              <CardContent>
-                <div
-                  id="container"
-                  style={{ margin: '0px', whitespace: 'nowrap' }}
+                <CardContent>
+                    <div
+                    id="container"
+                    style={{ margin: '0px', whitespace: 'nowrap' }}
+                    >
+                    <div id="image" style={{ display: 'inline' }}>
+                        <img src={OCK} style={{ width: '30px', height: '30px' }} />
+                    </div>
+                    <div
+                        id="texts"
+                        style={{
+                        position: 'relative',
+                        top: '-10px',
+                        display: 'inline',
+                        whitespace: 'nowrap;',
+                        }}
+                    >
+                        Old Chang Kee
+                    </div>
+                    </div>
+                    <h2 style={{ margin: '0px' }}>$2 off</h2>
+                    <p style={{ fontSize: '10px', margin: '0px' }}>
+                    is expiring in 1 day
+                    </p>
+                </CardContent>
+                </Card>
+                <Card
+                onClick={onClickOption2}
+                variant="outlined"
+                style={{
+                    borderRadius: '25px',
+                    width: '86%',
+                    marginTop: '12px',
+                    marginLeft: '0px',
+                    boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)',
+                }}
                 >
-                  <div id="image" style={{ display: 'inline' }}>
-                    <img src={OCK} style={{ width: '30px', height: '30px' }} />
-                  </div>
-                  <div
-                    id="texts"
-                    style={{
-                      position: 'relative',
-                      top: '-10px',
-                      display: 'inline',
-                      whitespace: 'nowrap;',
-                    }}
-                  >
-                    Old Chang Kee
-                  </div>
-                </div>
-                <h2 style={{ margin: '0px' }}> $5 off</h2>
-                <p style={{ fontSize: '10px', margin: '0px' }}>
-                  is expiring in 5 day
-                </p>
-              </CardContent>
-            </Card>
+                <CardContent>
+                    <div
+                    id="container"
+                    style={{ margin: '0px', whitespace: 'nowrap' }}
+                    >
+                    <div id="image" style={{ display: 'inline' }}>
+                        <img src={OCK} style={{ width: '30px', height: '30px' }} />
+                    </div>
+                    <div
+                        id="texts"
+                        style={{
+                        position: 'relative',
+                        top: '-10px',
+                        display: 'inline',
+                        whitespace: 'nowrap;',
+                        }}
+                    >
+                        Old Chang Kee
+                    </div>
+                    </div>
+                    <h2 style={{ margin: '0px' }}> $5 off</h2>
+                    <p style={{ fontSize: '10px', margin: '0px' }}>
+                    is expiring in 5 day
+                    </p>
+                </CardContent>
+                </Card>
+            </div>
           </CardContent>
         </Card>
       </div>

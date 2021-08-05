@@ -85,17 +85,18 @@ export default function CustomerHome() {
             <h3>S$ {transaction && transaction.finalamount}</h3>
             <p>Transaction ID</p>
             <h3>5yeCjc0d9WHx52qWKLmY</h3>
-            <img
-              src={Tick}
-              style={{ width: '120px', height: '120px', paddingLeft: '60px' }}
-            ></img>
-            <h3 style={{ paddingLeft: '30px' }}>Payment Successful</h3>
-            <button
-              style={{ position: 'relative', left: '50px' }}
-              onClick={onClickHome}
-            >
-              Return to Homepage
-            </button>
+            <div style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
+                <img
+                    src={Tick}
+                    style={{ width: '120px', height: '120px'}}
+                ></img>
+                <h3 style={{textAlign: "center" }}>Payment Successful</h3>
+                <button
+                onClick={onClickHome}
+                >
+                Return to Homepage
+                </button>
+            </div>
           </CardContent>
         </Card>
       </div>
