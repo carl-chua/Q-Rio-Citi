@@ -10,27 +10,33 @@ import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
 import OCK from '../../assets/OCK.png';
 import arrow from '../../assets/arrow.png';
-import { getTransactionDetails, selectVoucher } from '../../API/api.js';
-import { useHistory } from 'react-router-dom';
+import { selectVoucher, getVoucherDetails } from '../../API/api.js';
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function CustomerHome() {
-  const [trans_obj, set_trans_obj] = useState();
+  const [voucher, setVoucher] = useState();
   const history = useHistory();
+  const { transactionId, voucherId } = useParams();
+
   useEffect(() => {
-    getTransactionDetails('5yeCjc0d9WHx52qWKLmY', set_trans_obj);
-  }, []);
+    if (voucherId != undefined) {
+      getVoucherDetails(voucherId).then((v) => {
+        setVoucher(v);
+      });
+    }
+  }, [voucherId]);
 
   function onClickForward() {
-    history.push('/customer/payment');
+    history.push(`/customer/payment/${transactionId}/${voucherId}`);
   }
 
   function onClickBack() {
-    history.push('/customer/voucherselection');
+    history.push(`/customer/voucherselection/${transactionId}`);
   }
 
-  function redeem() {
+  async function redeem() {
+    await selectVoucher(voucherId, transactionId);
     onClickForward();
-    selectVoucher('swhEnJyaFq9k0vagAwUc', 'XEUTMdEIqeQ9STWRt1Rr');
   }
 
   return (
@@ -120,7 +126,9 @@ export default function CustomerHome() {
               src={OCK}
               style={{ width: '200px', height: '160px', paddingLeft: '25px' }}
             ></img>
-            <h2 style={{ position: 'relative', left: '80px' }}>$2 off</h2>
+            <h2 style={{ position: 'relative', left: '80px' }}>
+              {voucher != undefined ? voucher.name : ''}
+            </h2>
             <button
               style={{
                 position: 'relative',

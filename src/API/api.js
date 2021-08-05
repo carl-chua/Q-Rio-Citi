@@ -75,9 +75,23 @@ export async function selectVoucher(voucher_id, transaction_id) {
     final_amount = original_amount - voucher_value;
   }
 
+  console.log(final_amount);
+
   firebase.firestore().collection('transaction').doc(transaction_id).update({
     finalamount: final_amount,
   });
+
+  return '';
+}
+
+export async function getVoucherDetails(voucherId) {
+  var snapshot = firebase
+    .firestore()
+    .collection('merchantvouchers')
+    .doc(voucherId)
+    .get();
+
+  return (await snapshot).data();
 }
 
 export async function getTransactionDetails(transaction_id, setTransaction) {

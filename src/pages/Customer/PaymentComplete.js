@@ -10,14 +10,18 @@ import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
 import Tick from '../../assets/tick.png';
 import { getTransactionDetails } from '../../API/api.js';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function CustomerHome() {
   const [trans_obj, set_trans_obj] = useState();
   const history = useHistory();
+  const { transactionId } = useParams();
+
   useEffect(() => {
-    getTransactionDetails('5yeCjc0d9WHx52qWKLmY', set_trans_obj);
-  }, []);
+    if (transactionId != undefined) {
+      getTransactionDetails(transactionId, set_trans_obj);
+    }
+  }, [transactionId]);
 
   function onClickHome() {
     history.push('/customer');
@@ -87,7 +91,7 @@ export default function CustomerHome() {
             <p>Amount Paid</p>
             <h3>S${trans_obj == undefined ? '' : trans_obj.finalamount}</h3>
             <p>Transaction ID</p>
-            <h3>5yeCjc0d9WHx52qWKLmY</h3>
+            <h3>{transactionId}</h3>
             <img
               src={Tick}
               style={{ width: '120px', height: '120px', paddingLeft: '60px' }}

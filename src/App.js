@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/customer" component={CustomerHome} />
         <Route
           exact
-          path="/customer/paymentcomplete"
+          path="/customer/paymentcomplete/:transactionId"
           component={UserPaymentComplete}
         />
 
@@ -30,8 +30,16 @@ function App() {
           component={VoucherSelection}
         />
         <Route exact path="/merchant" component={MerchantHome} />
-        <Route exact path="/customer/confirmation" component={Confirmation} />
-        <Route exact path="/customer/payment" component={Payment} />
+        <Route
+          exact
+          path="/customer/confirmation/:transactionId/:voucherId"
+          component={Confirmation}
+        />
+        <Route
+          exact
+          path="/customer/payment/:transactionId/:voucherId"
+          component={Payment}
+        />
         <Route exact path="/merchant/enterAmount" component={EnterAmount} />
         <Route exact path="/merchant/qr" component={Home} />
         <Route exact path="/merchant/success" component={Home} />
