@@ -18,8 +18,17 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/customer" component={CustomerHome} />
-        <Route exact path="/customer/paymentcomplete" component={UserPaymentComplete} />
-        <Route exact path="/customer/voucherselection" component={VoucherSelection}/>
+        <Route
+          exact
+          path="/customer/paymentcomplete"
+          component={UserPaymentComplete}
+        />
+
+        <Route
+          exact
+          path="/customer/voucherselection/:transactionId"
+          component={VoucherSelection}
+        />
         <Route exact path="/merchant" component={MerchantHome} />
         <Route exact path="/customer/confirmation" component={Confirmation} />
         <Route exact path="/customer/payment" component={Payment} />
@@ -29,7 +38,7 @@ function App() {
         <Route exact path="/customer/qr" component={QRScanner} />
         <Route
           exact
-          path="/merchant/paymentcomplete"
+          path="/merchant/paymentcomplete/:transactionId"
           component={MerchantPaymentComplete}
         />
       </Switch>

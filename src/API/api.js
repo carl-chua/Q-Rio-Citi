@@ -57,7 +57,13 @@ export async function selectVoucher(voucher_id, transaction_id) {
     vouchervalue: voucher_value,
   });
 
-  var original_amount = (await firebase.firestore().collection('transaction').doc(transaction_id).get()).data().originalamount
+  var original_amount = (
+    await firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transaction_id)
+      .get()
+  ).data().originalamount;
 
   var final_amount = 0;
   if (voucher_type == 'percent') {
@@ -71,12 +77,17 @@ export async function selectVoucher(voucher_id, transaction_id) {
   });
 }
 
-export async function getTransactionDetails(transaction_id) {
-  var snapshot = firebase
-    .firestore()
-    .collection('transaction')
-    .doc(transaction_id)
-    .get();
-
-  return (await snapshot).data();
+export async function getTransactionDetails(transaction_id, setTransaction) {
+  try {
+    firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transaction_id)
+      .get()
+      .then((d) => {
+        setTransaction(d.data());
+      });
+  } catch (err) {
+    console.log(JSON.stringify(err));
+  }
 }
