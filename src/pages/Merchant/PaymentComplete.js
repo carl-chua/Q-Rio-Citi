@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Avatar,
-  Card,
-  CardContent,
-  Typography,
-  Paper,
-} from '@material-ui/core';
+import { Avatar, Card, CardContent } from '@material-ui/core';
 import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
 import Tick from '../../assets/tick.png';
@@ -13,18 +7,17 @@ import { getTransactionDetails } from '../../API/api.js';
 import { useHistory, useParams } from 'react-router-dom';
 
 export default function CustomerHome() {
-  const [trans_obj, set_trans_obj] = useState();
+  let { transactionId } = useParams();
   const history = useHistory();
-  const { transactionId } = useParams();
+
+  const [transaction, setTransaction] = useState();
 
   useEffect(() => {
-    if (transactionId != undefined) {
-      getTransactionDetails(transactionId, set_trans_obj);
-    }
+    getTransactionDetails(transactionId, setTransaction);
   }, [transactionId]);
 
   function onClickHome() {
-    history.push('/customer');
+    history.push('/merchant');
   }
 
   return (
@@ -88,8 +81,8 @@ export default function CustomerHome() {
           }}
         >
           <CardContent>
-            <p>Amount Paid</p>
-            <h3>S${trans_obj == undefined ? '' : trans_obj.finalamount}</h3>
+            <p>Amount Received</p>
+            <h3>S${transaction && transaction.finalamount}</h3>
             <p>Transaction ID</p>
             <h3>{transactionId}</h3>
             <div

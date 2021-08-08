@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-export async function updateOriginalAmount(amount, setTransactionId) {
+export async function updateOriginalAmount(amount, setTransactionId, setURL) {
   try {
     firebase
       .firestore()
@@ -15,23 +15,26 @@ export async function updateOriginalAmount(amount, setTransactionId) {
       })
       .then((docRef) => {
         setTransactionId(docRef.id);
+        setURL(
+          window.location.origin + '/customer/voucherselection/' + docRef.id
+        );
       });
   } catch (err) {
     console.log(JSON.stringify(err));
   }
 }
 
-export async function successfulTransactionListener(
-  transactionID,
-  setTransaction
-) {
+export async function successfulTransactionListener(transactionID, redirect) {
   try {
     firebase
       .firestore()
       .collection('transaction')
       .doc(transactionID)
       .onSnapshot((docSnapshot) => {
-        setTransaction(docSnapshot.data());
+        console.log(docSnapshot.data());
+        if (docSnapshot && docSnapshot.data() && docSnapshot.data().isPaid) {
+          redirect();
+        }
       });
   } catch (err) {
     console.log(JSON.stringify(err));
@@ -50,13 +53,24 @@ export async function selectVoucher(voucher_id, transaction_id) {
   var selected_voucher = snapshot.data();
   var voucher_type = selected_voucher.discounttype;
   var voucher_value = selected_voucher.discountvalue;
-  var original_amount = selected_voucher.originalamount;
 
-  firebase.firestore().collection('transaction').doc(transaction_id).set({
-    voucherID: voucher_id,
-    vouchertype: voucher_type,
-    vouchervalue: voucher_value,
-  });
+  await firebase
+    .firestore()
+    .collection('transaction')
+    .doc(transaction_id)
+    .update({
+      voucherID: voucher_id,
+      vouchertype: voucher_type,
+      vouchervalue: voucher_value,
+    });
+
+  var original_amount = (
+    await firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transaction_id)
+      .get()
+  ).data().originalamount;
 
   var final_amount = 0;
   if (voucher_type == 'percent') {
@@ -65,17 +79,54 @@ export async function selectVoucher(voucher_id, transaction_id) {
     final_amount = original_amount - voucher_value;
   }
 
-  firebase.firestore().collection('transaction').doc(transaction_id).set({
-    finalamount: final_amount,
-  });
-}
+  console.log(final_amount);
 
-export async function getTransactionDetails(transaction_id) {
-  var snapshot = firebase
+  await firebase
     .firestore()
     .collection('transaction')
     .doc(transaction_id)
+    .update({
+      finalamount: final_amount,
+    });
+
+  return '';
+}
+
+export async function getVoucherDetails(voucherId) {
+  var snapshot = firebase
+    .firestore()
+    .collection('merchantvouchers')
+    .doc(voucherId)
     .get();
 
   return (await snapshot).data();
+}
+
+export async function getTransactionDetails(transaction_id, setTransaction) {
+  try {
+    firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transaction_id)
+      .get()
+      .then((d) => {
+        setTransaction(d.data());
+      });
+  } catch (err) {
+    console.log(JSON.stringify(err));
+  }
+}
+
+export async function updatePaymentState(transaction_id) {
+  try {
+    await firebase
+      .firestore()
+      .collection('transaction')
+      .doc(transaction_id)
+      .update({
+        isPaid: true,
+      });
+  } catch (err) {
+    console.log(JSON.stringify(err));
+  }
 }

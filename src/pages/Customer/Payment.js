@@ -8,15 +8,21 @@ import {
 } from '@material-ui/core';
 import ShoppingCartIcon from '../../assets/ShoppingCartIcon.svg';
 import ProfileImage from '../../assets/ProfileImage.png';
-import OCK from '../../assets/OCK.png';
 import arrow from '../../assets/arrow.png';
-import { selectVoucher, getVoucherDetails } from '../../API/api.js';
+import { getTransactionDetails, getVoucherDetails, updatePaymentState } from '../../API/api.js';
 import { useHistory, useParams } from 'react-router-dom';
 
 export default function CustomerHome() {
+  const [trans_obj, set_trans_obj] = useState();
   const [voucher, setVoucher] = useState();
   const history = useHistory();
   const { transactionId, voucherId } = useParams();
+
+  useEffect(() => {
+    if (transactionId != undefined) {
+      getTransactionDetails(transactionId, set_trans_obj);
+    }
+  }, [transactionId]);
 
   useEffect(() => {
     if (voucherId != undefined) {
@@ -26,17 +32,17 @@ export default function CustomerHome() {
     }
   }, [voucherId]);
 
+  async function pay() {
+    await updatePaymentState(transactionId);
+    onClickForward();
+  }
+
   function onClickForward() {
-    history.push(`/customer/payment/${transactionId}/${voucherId}`);
+    history.push(`/customer/paymentcomplete/${transactionId}`);
   }
 
   function onClickBack() {
     history.push(`/customer/voucherselection/${transactionId}`);
-  }
-
-  async function redeem() {
-    await selectVoucher(voucherId, transactionId);
-    onClickForward();
   }
 
   return (
@@ -121,24 +127,45 @@ export default function CustomerHome() {
                 Back
               </div>
             </div>
+            <p style={{ marginTop: '40px', margin: '2px' }}>Pay From:</p>
+            <div style={{ overflow: 'hidden' }}>
+              <h4 style={{ float: 'left', margin: '2px' }}>CitiPay Wallet </h4>
+              <p style={{ float: 'right', margin: '2px' }}>
+                S${trans_obj == undefined ? '' : trans_obj.originalamount}
+              </p>
+            </div>
+            <p style={{ margin: '2px', fontSize: '15px' }}>
+              Current Balance S$100.00
+            </p>
+            <p style={{ paddingTop: '30px', margin: '2px' }}>Voucher</p>
+            <div style={{ overflow: 'hidden' }}>
+              <h4 style={{ float: 'left', margin: '2px' }}>
+                {voucher != undefined
+                  ? voucher.merchantname + ' ' + voucher.name
+                  : ''}{' '}
+              </h4>
+              <p style={{ float: 'right', margin: '2px' }}>
+                -S${trans_obj == undefined ? '' : trans_obj.vouchervalue}
+              </p>
+            </div>
+            <div style={{ paddingTop: '30px', overflow: 'hidden' }}>
+              <p style={{ float: 'left', margin: '2px' }}>Total Amount: </p>
+              <p style={{ float: 'right', margin: '2px' }}>
+                S${trans_obj == undefined ? '' : trans_obj.finalamount}
+              </p>
+            </div>
             <div style={{display: "flex", flexDirection:"column", alignItems: "center"}}>
-                <p>Do you want to redeem this voucher?</p>
-                <img
-                src={OCK}
-                style={{ width: '200px', height: '160px'}}
-                ></img>
-                <h2 style={{}}>
-                {voucher != undefined ? voucher.name : ''}
-                </h2>
                 <button
                 style={{
+                    position: 'relative',
+                    top: '20px',
                     backgroundColor: '#003B70',
                     color: '#FFFFFF',
                     borderRadius: '8px',
                 }}
-                onClick={redeem}
+                onClick={pay}
                 >
-                Redeem
+                Pay
                 </button>
             </div>
           </CardContent>
